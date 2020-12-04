@@ -57,7 +57,7 @@ func main() {
   regexps = append(regexps, reg)
   reg = regexp.MustCompile(`(?m)eyr:(20(2[0-9]|30))`)
   regexps = append(regexps, reg)
-  reg = regexp.MustCompile(`(?m)hgt:((1([5-8][0-9]|9[0-4]))cm|(59|6[0-9]|7[0-6])in)`)
+  reg = regexp.MustCompile(`(?m)hgt:((1([5-8][0-9]|9[0-3]))cm|(59|6[0-9]|7[0-6])in)`)
   regexps = append(regexps, reg)
   reg = regexp.MustCompile(`(?m)hcl:#[0-9a-f]{6}`)
   regexps = append(regexps, reg)
