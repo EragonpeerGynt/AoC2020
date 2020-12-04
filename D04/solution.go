@@ -46,7 +46,7 @@ func ValidatePasswords(passwords []string, required []*regexp.Regexp) int {
 }
 
 func main() {
-	dirtyInput := reader.ReadAllLines()
+  dirtyInput := reader.ReadAllLines()
   splitInput := strings.Split(dirtyInput, "\n\n")
   required := []string{"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
   fmt.Println(CheckPasswords(splitInput, required))
