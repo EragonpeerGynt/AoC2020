@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
   "os"
+  "strings"
 )
 
 func check(e error) {
@@ -17,4 +18,8 @@ func ReadAllLines() string {
   check(err)
   fmt.Print(string(dat) + "\n")
   return string(dat)
+}
+
+func ReadLineArray() []string {
+  return strings.Split(ReadAllLines(), "\n")
 }

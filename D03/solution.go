@@ -2,7 +2,6 @@ package main
 
 import (
 	"AoC/Common/Reader"
-  "strings"
   "fmt"
 )
 
@@ -22,8 +21,7 @@ func DiveDeeper(coordinates []string, move road, width int, treesEncounter int) 
 }
 
 func main() {
-	dirtyInput := reader.ReadAllLines()
-  splitInput := strings.Split(dirtyInput, "\n")
+  splitInput := reader.ReadLineArray()
   move := road{right: 3, down: 1}
   fmt.Println(DiveDeeper(splitInput, move, 0, 0))
   var base int64 = int64(1)
