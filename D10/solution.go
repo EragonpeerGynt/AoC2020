@@ -40,7 +40,6 @@ func solvePart2(input []int) {
 		routes[jolt] = 0
 		for i := 1; i <= 3; i++ {
 			if val,ok := routes[jolt+i]; ok {
-				fmt.Println(jolt+i, val)
 				routes[jolt] += val
 			}
 		}
