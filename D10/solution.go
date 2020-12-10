@@ -14,6 +14,7 @@ func main() {
 	solvePart2(parsed)
 }
 
+
 func solvePart1(input []int) {
 	sort.Ints(input)
 	input = append(input, input[len(input)-1]+3)
@@ -27,14 +28,16 @@ func solvePart1(input []int) {
 }
 
 func solvePart2(input []int) {
+	//setting up input and initial state
 	input = append(input, 0)
 	sort.Ints(input)
 	input = reverseInts(input)
 	routes := make(map[int]int)
+	//actual logic
+	///I used dictionary as stack simulator for this program. It works probably somewhat as fast as array but with a lot less overhead
 	routes[input[0]+3] = 1
 	for _,jolt := range input {
 		routes[jolt] = 0
-		
 		for i := 1; i <= 3; i++ {
 			if val,ok := routes[jolt+i]; ok {
 				fmt.Println(jolt+i, val)
@@ -44,6 +47,7 @@ func solvePart2(input []int) {
 	}
 	fmt.Println(routes[0])
 }
+
 
 func reverseInts(input []int) []int {
     if len(input) == 0 {
