@@ -1,2 +1,2 @@
 language = "go"
-run = "go run ./D10/solution.go D10"
+run = "go run ./D11/solution.go D11"
