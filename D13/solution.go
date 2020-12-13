@@ -31,62 +31,29 @@ func solvePart1(ourTime int, busIds []int) {
 	fmt.Println(busId * (waitTime - ourTime))
 }
 
-func solvePart2(busIds []Busses) {
-	remainderTable := make([]chineseRemainder, 0)
-	totalId := allReminder(busIds)
-	for _,busId := range busIds {
-		tmpReminder := chineseRemainder{
-			bi:busId.modul,
-			Ni:totalId/busId.id,
-			xi:calculateXi(busId.id, totalId/busId.id),
+func solvePart2(busIds map[int64]int64) {
+	minValue := int64(0)
+	runningProduct := int64(1)
+	for k, v := range busIds {
+		for (minValue+v)%k != 0 {
+			minValue += runningProduct
 		}
-		remainderTable = append(remainderTable, tmpReminder)
+		runningProduct *= k
 	}
-	totalChinese := int64(0)
-	for _,remainder := range remainderTable {
-		totalChinese += (remainder.bi*remainder.Ni*remainder.xi)
-	}
-	fmt.Println(remainderTable)
-	fmt.Println(totalChinese%totalId)
+	fmt.Println(minValue)
 }
 
-func allReminder (busIds []Busses) int64 {
-	all := int64(1)
-	for _,bus := range busIds {
-		all *= bus.id
-	}
-	return all
-}
 
-func calculateXi(base, bonus int64) int64{
-	bonus = bonus % base
-	i := int64(1)
-	for {
-		if (bonus * i) % base == 1 {
-			break
-		}
-		i++
-	}
-	return (bonus * i)
-}
-
-func parseIds2(input string) (parsed []Busses) {
-	parsed = make([]Busses, 0)
+func parseIds2(input string) (parsed map[int64]int64) {
+	parsed = make(map[int64]int64)
 	for i,id := range strings.Split(input, ",") {
 		if id == "x" {
 			continue
 		}
 		idInt,_ := strconv.Atoi(id)
-		parsed = append(parsed, Busses{id:int64(idInt),modul:int64(i),})
+		parsed[int64(idInt)] = int64(i)
 	}
 	return
-}
-
-
-type chineseRemainder struct {
-	bi int64
-	Ni int64
-	xi int64
 }
 
 type Busses struct {
